@@ -1,57 +1,51 @@
 # MERN Excercises
 
-## Excercise : About the API 
-Page 100
+## Excercise : mongoDB basics
+Page 144
 
 ### 1
-using just the URL from the browser results in an error because of the missing Headers, which provide the data of the request (query, mutation). So the simple request with URL only is not working.
+`db.collection.find().help()`
+shows a list of cursor methods
+
+## Exercise : MongoDB CRUD Operations
+page 152
+
+### 1 
+`db.employee.find({middlename: {$exists:true}})`
+returns all Employees with an existing middlename
 
 ### 2
-The ability to provide a body to the request. This allows for having a single endpoint but querying different information.
+No. it's a normal Javascript Object
 
-## Excercise : The API List
-Page 104
+### 3 
+`db.employee.updateOne({_id:ObjectId("xyz")}, {$unset: {middlename:""}})`
+removes the middlename for the selected ObjectId (Employee)
+
+### 4 
+The one indicate the direction used to iterate through the index. -1 is the opposite direction.
+
+## Excercise : Schema initialization
+page 161
+
 ### 1
-{IssueList} renders an error message :  
-```
-"message": "Field \"issueList\" of type \"[Issue!]!\" must have a selection of subfields. Did you mean \"issueList { ... }\"?"
-```
-Only indicating the issueList field fails because of the missing `arg`
-
-{ issueList { } } does not render anything. No message as we privide an `arg`, but no result as there is no subfield to display.
+using the mongoDB nodejs library in a nodeJS app, allows for writing everything in a known manner. 
 
 ### 2
-{issueList { wrong }} with a wrong subfield, renders an error
-```
-"message": "Cannot query field \"test\" on type \"Issue\".",
-```
-which makes sense as the requested subfield is not existing.
-The server resonds an error 400. So, yes, the request is sent.
-### 3
-This is how an aggregated request would look like : 
-```
-query{
-  issueList {
-    title
-  }
-  about
-}
-```
+For a searchbar i would use a text type index. 
 
-## Excercise : Custom Scalar Types
+## Exercise : Reading from MongoDB
+page 164
 ### 1
-I do not see any difference. 
-Probably because ... boooooh :)
-### 2
-not sure
-
-## Excercise : The Create API
-
-the `due` Date has not been parsed correctly in my case. The result was still a string, exactly as I entered.
-This is probably related to the old version running following the book. 
-### 1
+using global variable has the advantage that we do not have to care about if the connectino can be reused or if a nre no is needed. 
 ### 2 
-It's passed 1:1 
+during a predefinite period of time, it tries to reconnect to the db, after that period, an error is shown. 
+This Default time can be changed if needed.
 ### 3
-### 4
+I would limit the number of returned results and work with pagination. .limit(xx)
+
+### Exercise : Writing to MongoDB
+page 167
+
+### 1 
+???
 
